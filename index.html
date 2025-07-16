@@ -253,6 +253,9 @@
             const ethicsLoader = document.getElementById('ethicsLoader');
 
             async function callGemini(prompt) {
+                // BELANGRIJK: Voeg hier je eigen Gemini API key in.
+                // Je kunt een key gratis aanmaken via Google AI Studio (https://aistudio.google.com/app/apikey).
+                // Zonder een geldige key zal de 'Analyse Lab' niet werken op een live website zoals Github.
                 const apiKey = "AIzaSyAxSJTBJFU-LmzUmnPyga2o_CVL5rtST6s";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
                 
@@ -284,7 +287,10 @@
                     }
                 } catch (error) {
                     console.error("Error calling Gemini API:", error);
-                    return `Fout bij het aanroepen van de AI: ${error.message}. Controleer de console voor details.`;
+                    if (apiKey === "VOEG_HIER_JE_EIGEN_API_KEY_IN") {
+                        return "Fout: De Gemini API key ontbreekt. Volg de instructies in de code om je eigen key toe te voegen.";
+                    }
+                    return `Fout bij het aanroepen van de AI: ${error.message}. Controleer of je API key correct is en of de browser console meer details geeft.`;
                 }
             }
 
